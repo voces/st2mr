@@ -11,7 +11,10 @@ export const up = async (knex: Knex): Promise<void> => {
 		table.timestamps(false, true);
 	});
 
-	await knex("terrains").insert({ name: "hehe", data: "blah" });
+	const countRaw = await knex("terrains").count("id", { as: "count" });
+
+	if (countRaw[0].count === 0)
+		await knex("terrains").insert({ name: "blank", data: "blah" });
 
 	const data = await knex("terrains").select();
 	if (data.length) await knex("terrains_temp").insert(data);
