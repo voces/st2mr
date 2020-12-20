@@ -15,7 +15,7 @@ export const withRouter = <T>(tempRouter: Router, fn: () => T): T => {
 
 const emptyObject = Joi.object({});
 export const addEndpoint = <Resp, Req>(
-	type: "get" | "post",
+	type: "get" | "post" | "use",
 	route: string,
 	spec: Spec<Resp, Req>,
 ): Router =>
