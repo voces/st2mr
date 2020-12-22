@@ -8,8 +8,8 @@ export const uploadEndpoint: Spec<
 	{ body: { name: string; data: string; parent: string } }
 > = {
 	body: Joi.object({
-		name: Joi.string().required(),
-		data: Joi.string().required(),
+		name: Joi.string().max(100).required(),
+		data: Joi.string().max(33_554_432).required(),
 		parent: Joi.number().integer(),
 	}),
 	handler: async ({ body: { name, data, parent } }) => {
